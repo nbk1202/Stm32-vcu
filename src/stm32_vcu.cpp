@@ -103,6 +103,7 @@
 #include "kangoobms.h"
 #include "OutlanderCanHeater.h"
 #include "OutlanderHeartBeat.h"
+#include "JLR_L322.h"
 
 #define PRECHARGE_TIMEOUT 5  //5s
 
@@ -194,6 +195,7 @@ static Can_OBD2 canOBD2;
 static Shifter shifterNone;
 static RearOutlanderInverter rearoutlanderInv;
 static LinBus* lin;
+static JLR_L322 l322Vehicle;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 static void Ms200Task(void)
@@ -802,6 +804,9 @@ static void UpdateVehicle()
         break;
     case vehicles::Classic:
         selectedVehicle = &classVehicle;
+        break;
+    case vehicles::vJLR_L322:
+        selectedVehicle = &l322Vehicle;
         break;
     }
     //This will call SetCanFilters() via the Clear Callback
